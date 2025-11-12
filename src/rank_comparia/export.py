@@ -24,3 +24,15 @@ pipeline = RankingPipeline(
 
 # ranker = pipeline.ranker
 scores = pipeline.run()
+
+# Copy ml_final_data.json
+
+# dataset_info = api.dataset_info('ministere-culture/comparia-votes')
+# timestamp = getattr(dataset_info, 'lastModified', None)
+# timestamp = None
+
+# if timestamp:
+#     formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")}
+#     print(f'DATASET_TIMESTAMP={formatted_timestamp}')
+# else:
+#     print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
