@@ -18,11 +18,16 @@ jobs:
       uses: actions/cache@v4
       with:
         path: .venv
-        key: ${{ runner.os }}-uv-${{ hashFiles('uv.lock') }}
+        key: ${{ runner.os }}-uv-${{ hashFiles('pyproject.toml') }}
         restore-keys: |
           ${{ runner.os }}-uv-
-    - name: Install dependencies
-      run: uv sync
+    - name: Cache uv Dependency Store
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/uv
+        key: ${{ runner.os }}-uv-deps-${{ hashFiles('pyproject.toml') }}
+    # - name: Install dependencies
+    #   run: uv sync
     - name: Install local package in editable mode
       run: uv pip install -e .
     # - name: Copy models data
