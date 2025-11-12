@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: "0 6 * * 3"
 
+permissions:
+  contents: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -37,8 +40,32 @@ jobs:
       run: uv sync
     - name: Install local package in editable mode
       run: uv pip install -e .
-    # - name: Copy models data
-    #   run: mkdir -p src/data ; cp ./data/models_data.json src/data/models_data.json 
+    - name: Get Dataset Timestamp
+      id: dataset-timestamp
+      run: |
+        python3 -c "
+        from datetime import datetime
+        from huggingface_hub import HfApi
+        import os
+        
+        try:
+            api = HfApi()
+
+            dataset_info = api.dataset_info('ministere-culture/comparia-votes')
+            timestamp = getattr(dataset_info, 'lastModified', None)
+            timestamp = None
+            
+            if timestamp:
+                formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")}
+                print(f'DATASET_TIMESTAMP={formatted_timestamp}')
+            else:
+                print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+                
+        except Exception as e:
+            print(f'Error: {e}')
+            print(f'DATASET_TIMESTAMP=error_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+        " >> $GITHUB_ENV
+    # FIXME: check if release for DATASET_TIMESTAMP already computed
     # - name: Download models data
     #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
     - name: Exec export script
@@ -53,38 +80,14 @@ jobs:
       with:
         name: outputs
         path: src/output/
-    - name: Get Dataset Timestamp
-      id: dataset-timestamp
-      run: |
-        python3 -c "
-        from datetime import datetime
-        from huggingface_hub import HfApi
-        import os
-        
-        try:
-            api = HfApi()
-
-            dataset_info = api.dataset_info('ministere-culture/comparia-conversations')
-            timestamp = getattr(dataset_info, 'lastModified', None)
-            timestamp = None
-            
-            if timestamp:
-                formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")}
-                print(f'DATASET_TIMESTAMP={formatted_timestamp}')
-            else:
-                print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
-                
-        except Exception as e:
-            print(f'Error: {e}')
-            print(f'DATASET_TIMESTAMP=error_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
-        " >> $GITHUB_ENV
+   
     - name: Create Release
-      uses: actions/create-release@v1
+      uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: release_${{ env.DATASET_TIMESTAMP }}
-        release_name: Release ${{ env.DATASET_TIMESTAMP }}
+        name: Release ${{ env.DATASET_TIMESTAMP }}
         body: |
           Release automatique générée par la pipeline CI/CD
           
@@ -94,3 +97,4 @@ jobs:
           Contient les données finales du classement depuis ml_final_data.json
         draft: false
         prerelease: false
+        generate_release_notes: true
