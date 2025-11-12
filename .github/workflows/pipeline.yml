@@ -59,14 +59,14 @@ jobs:
             timestamp = None
             
             if timestamp:
-                formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")
+                formatted_timestamp = timestamp.strftime('%Y%m%d_%H%M%S')
                 print(f'DATASET_TIMESTAMP={formatted_timestamp}')
             else:
-                print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+                print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime('%Y%m%d_%H%M%S')}')
                 
         except Exception as e:
             print(f'Error: {e}')
-            print(f'DATASET_TIMESTAMP=error_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+            print(f'DATASET_TIMESTAMP=error_{datetime.now().strftime('%Y%m%d_%H%M%S')}')
         " >> $GITHUB_ENV
     # FIXME: check if release for DATASET_TIMESTAMP already computed
     # - name: Download models data
