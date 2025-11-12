@@ -42,9 +42,8 @@ jobs:
       run: uv sync
     - name: Install local package in editable mode
       run: uv pip install -e .
-    - name: Get Dataset Timestamp
-      id: dataset-timestamp
-      run: cd src && uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
+    # - name: Get Dataset Timestamp
+    #   run: cd src && uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
     # FIXME: check if release for DATASET_TIMESTAMP already computed
     # - name: Download models data
     #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
@@ -66,13 +65,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: release_${{ env.DATASET_TIMESTAMP }}
-        name: Release ${{ env.DATASET_TIMESTAMP }}
+        tag_name: release_${{ github.run_id }}
+        name: Release ${{ github.run_id }}
         body: |
           Release automatique générée par la pipeline CI/CD
           
           Basé sur les dataset "ministere-culture/comparia-*"
-          avec timestamp: ${{ env.DATASET_TIMESTAMP }}
+          avec id: ${{ github.run_id }}
           
           Contient les données finales du classement depuis ml_final_data.json
         draft: false
