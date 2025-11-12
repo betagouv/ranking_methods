@@ -46,7 +46,7 @@ jobs:
     - name: Get Dataset Timestamp
       id: dataset-timestamp
       run: |
-        python3 -c "
+        uv python3 -c "
         from datetime import datetime
         from huggingface_hub import HfApi
         import os
