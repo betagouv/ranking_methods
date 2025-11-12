@@ -25,8 +25,8 @@ jobs:
       run: uv sync
     - name: Install local package in editable mode
       run: uv pip install -e .
-    - name: Copy models data
-      run: mkdir -p src/data ; cp ./data/models_data.json src/data/models_data.json 
+    # - name: Copy models data
+    #   run: mkdir -p src/data ; cp ./data/models_data.json src/data/models_data.json 
     # - name: Download models data
     #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
     - name: Exec export script
