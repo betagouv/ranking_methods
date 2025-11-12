@@ -32,7 +32,7 @@ scores = pipeline.run()
 # timestamp = None
 
 # if timestamp:
-#     formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")}
+#     formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")
 #     print(f'DATASET_TIMESTAMP={formatted_timestamp}')
 # else:
 #     print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
