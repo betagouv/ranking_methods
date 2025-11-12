@@ -1,0 +1,80 @@
+name: Pipeline
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 6 * * 3"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: "ranking"
+  # group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+    - name: Install uv
+      run: pipx install uv
+    - name: Cache uv virtual environment
+      uses: actions/cache@v4
+      with:
+        path: .venv
+        key: ${{ runner.os }}-uv-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-uv
+    - name: Cache uv Dependency Store
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/uv
+        key: ${{ runner.os }}-uv-deps-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-uv-deps
+    - name: Install dependencies
+      run: uv sync
+    - name: Install local package in editable mode
+      run: uv pip install -e .
+    - name: Get Dataset Timestamp
+      id: dataset-timestamp
+      run: cd src && uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
+    # FIXME: check if release for DATASET_TIMESTAMP already computed
+    # - name: Download models data
+    #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
+    - name: Exec export script
+      run: |
+        cd src && uv run python rank_comparia/export.py || true
+      env:
+        HF_DATASETS_CACHE: cache
+        HF_HUB_CACHE: cache
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+    - name: Upload outputs
+      uses: actions/upload-artifact@v4
+      with:
+        name: outputs
+        path: src/output/
+   
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: release_${{ env.DATASET_TIMESTAMP }}
+        name: Release ${{ env.DATASET_TIMESTAMP }}
+        body: |
+          Release automatique générée par la pipeline CI/CD
+          
+          Basé sur les dataset "ministere-culture/comparia-*"
+          avec timestamp: ${{ env.DATASET_TIMESTAMP }}
+          
+          Contient les données finales du classement depuis ml_final_data.json
+        draft: false
+        prerelease: false
+        generate_release_notes: true
