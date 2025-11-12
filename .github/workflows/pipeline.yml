@@ -43,8 +43,19 @@ jobs:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
     - name: Upload outputs
       uses: actions/upload-artifact@v4
-      if: always()
       with:
         name: outputs
-        path: output/
-        if-no-files-found: ignore
+        path: src/output/
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release ${{ github.run_number }}
+        body: |
+          Release automatique générée par la pipeline CI/CD
+          
+          Contient les données finales ML depuis ml_final_data.json
+        draft: false
+        prerelease: false
