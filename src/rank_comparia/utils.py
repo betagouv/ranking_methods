@@ -8,6 +8,22 @@ from typing import Literal
 import datasets
 import polars as pl
 
+from datetime import datetime
+from huggingface_hub import HfApi
+import os
+
+def get_hf_timestamp() -> int:
+    api = HfApi()
+
+    dataset_info = api.dataset_info('ministere-culture/comparia-votes')
+    dataset_info = api.dataset_info('ministere-culture/comparia-reactions')
+    last_modified_votes = getattr(dataset_info, 'lastModified', None)
+    last_modified_reactions = getattr(dataset_info, 'lastModified', None)
+    
+    if last_modified_votes and last_modified_reactions:
+        return max(last_modified_votes.timestamp(),last_modified_reactions.timestamp())
+    else:
+        return datetime.now().timestamp()
 
 def save_data(data: pl.DataFrame, title: str, save_path: Path) -> None:
     """

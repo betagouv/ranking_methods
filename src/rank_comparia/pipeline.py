@@ -29,7 +29,7 @@ from rank_comparia.plot import (
 )
 from rank_comparia.preferences import get_preferences_data
 from rank_comparia.ranker import Match, MatchScore, Ranker
-from rank_comparia.utils import categories, load_comparia
+from rank_comparia.utils import categories, load_comparia, get_hf_timestamp
 
 
 @dataclass
@@ -125,7 +125,8 @@ class RankingPipeline:
         final_path.write_text(
             json.dumps(
                 {
-                    "timestamp": datetime.now().timestamp(),
+                    
+                    "timestamp": get_hf_timestamp(),
                     "models": final_data.to_dicts(),
                 },
                 indent=2,
