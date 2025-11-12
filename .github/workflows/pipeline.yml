@@ -1,6 +1,6 @@
 name: Pipeline
 on:
-  pull_request:
+  push:
   schedule:
     - cron: "0 6 * * 3"
 
@@ -46,16 +46,44 @@ jobs:
       with:
         name: outputs
         path: src/output/
+    - name: Get Dataset Timestamp
+      id: dataset-timestamp
+      run: |
+        python3 -c "
+        from datetime import datetime
+        from huggingface_hub import HfApi
+        import os
+        
+        try:
+            api = HfApi()
+
+            dataset_info = api.dataset_info('ministere-culture/comparia-conversations')
+            timestamp = getattr(dataset_info, 'lastModified', None)
+            timestamp = None
+            
+            if timestamp:
+                formatted_timestamp = timestamp.strftime("%Y%m%d_%H%M%S")}
+                print(f'DATASET_TIMESTAMP={formatted_timestamp}')
+            else:
+                print(f'DATASET_TIMESTAMP=unknown_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+                
+        except Exception as e:
+            print(f'Error: {e}')
+            print(f'DATASET_TIMESTAMP=error_{datetime.now().strftime("%Y%m%d_%H%M%S")}')
+        " >> $GITHUB_ENV
     - name: Create Release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: v${{ github.run_number }}
-        release_name: Release ${{ github.run_number }}
+        tag_name: release_${{ env.DATASET_TIMESTAMP }}
+        release_name: Release ${{ env.DATASET_TIMESTAMP }}
         body: |
           Release automatique générée par la pipeline CI/CD
           
-          Contient les données finales ML depuis ml_final_data.json
+          Basé sur les dataset "ministere-culture/comparia-*"
+          avec timestamp: ${{ env.DATASET_TIMESTAMP }}
+          
+          Contient les données finales du classement depuis ml_final_data.json
         draft: false
         prerelease: false
