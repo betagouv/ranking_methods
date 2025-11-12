@@ -45,7 +45,7 @@ jobs:
       run: uv pip install -e .
     - name: Get Dataset Timestamp
       id: dataset-timestamp
-      run: uv python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
+      run: uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
     # FIXME: check if release for DATASET_TIMESTAMP already computed
     # - name: Download models data
     #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
