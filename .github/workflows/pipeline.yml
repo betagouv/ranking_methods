@@ -58,13 +58,19 @@ jobs:
         name: outputs
         path: src/output/
 
+    - name: Get Release Timestamp
+      id: timestamp
+      run: |
+        TIMESTAMP=$(python -c "import json; print(json.load(open('src/output/ml_final_data.json'))['timestamp'])")
+        echo "DATASET_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+
     - name: Create Release
       uses: softprops/action-gh-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: release_${{ github.run_id }}
-        name: Release ${{ github.run_id }}
+        tag_name: release_${{ env.DATASET_TIMESTAMP }}
+        name: Release ${{ env.DATASET_TIMESTAMP }}
         body: |
           Release automatique générée par la pipeline CI/CD
           
