@@ -47,7 +47,7 @@ jobs:
     #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
     - name: Exec export script
       run: |
-        cd src && uv run python rank_comparia/export.py || true
+        cd src && source .venv/bin/activate && python rank_comparia/export.py || true
       env:
         HF_DATASETS_CACHE: cache
         HF_HUB_CACHE: cache
@@ -75,6 +75,8 @@ jobs:
         draft: false
         prerelease: false
         generate_release_notes: true
+        files: |
+          src/output/**
 
     # - name: Publish ml_final_data.json as release
     #   if: github.ref == 'refs/heads/main'
