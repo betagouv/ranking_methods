@@ -25,19 +25,19 @@ jobs:
     - name: Cache uv virtual environment
       uses: actions/cache@v4
       with:
-        path: src/.venv
+        path: .venv
         key: ${{ runner.os }}-uv
         restore-keys: |
           ${{ runner.os }}-uv
 
     - name: Setup virtual environment
       run: |
-        cd src && python -m venv .venv
+        python -m venv .venv
         source .venv/bin/activate
         pip install --upgrade pip
     - name: Install dependencies
       run: |
-        cd src && source .venv/bin/activate
+        source .venv/bin/activate
         pip install -e .
         pip install polars datasets ipywidgets scikit-learn altair vl-convert-python networkx hdbscan nltk bertopic matplotlib umap-learn jupyter nbconvert
     # - name: Get Dataset Timestamp
@@ -47,7 +47,7 @@ jobs:
     #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
     - name: Exec export script
       run: |
-        cd src && source .venv/bin/activate && python rank_comparia/export.py || true
+        source .venv/bin/activate && cd src && python rank_comparia/export.py
       env:
         HF_DATASETS_CACHE: cache
         HF_HUB_CACHE: cache
