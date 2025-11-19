@@ -25,19 +25,19 @@ jobs:
     - name: Cache uv virtual environment
       uses: actions/cache@v4
       with:
-        path: .venv
+        path: src/.venv
         key: ${{ runner.os }}-uv
         restore-keys: |
           ${{ runner.os }}-uv
 
     - name: Setup virtual environment
       run: |
-        python -m venv .venv
+        cd src && python -m venv .venv
         source .venv/bin/activate
         pip install --upgrade pip
     - name: Install dependencies
       run: |
-        source .venv/bin/activate
+        cd src && source .venv/bin/activate
         pip install -e .
         pip install polars datasets ipywidgets scikit-learn altair vl-convert-python networkx hdbscan nltk bertopic matplotlib umap-learn jupyter nbconvert
     # - name: Get Dataset Timestamp
@@ -113,8 +113,8 @@ jobs:
           # Push to Hugging Face using huggingface_hub CLI
           echo "Pushing ml_final_data.json to Hugging Face dataset"
           huggingface-cli upload \
-            ${{ secrets.HF_DATASET_REPO }} \
-            $TEMP_DIR \
+            comparia-conversations \
+            ./src/output/ml_final_data.json \
             "." \
             --token ${{ secrets.HF_PUSH_DATASET_KEY }} \
             --repo-type dataset \
