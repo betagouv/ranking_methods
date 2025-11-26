@@ -21,13 +21,16 @@ def compute_total_and_ratio(data: pl.DataFrame) -> pl.DataFrame:
             exprs=pl.col(*POSITIVE_REACTIONS, *NEGATIVE_REACTIONS),
         )
     )
+    # Only compute ratio when there are preferences
     data = data.with_columns(
-        positive_prefs_ratio=pl.fold(
-            acc=pl.lit(0),
-            function=operator.add,
-            exprs=pl.col(*POSITIVE_REACTIONS),
+        positive_prefs_ratio=pl.when(pl.col("total_prefs") > 0).then(
+            pl.fold(
+                acc=pl.lit(0),
+                function=operator.add,
+                exprs=pl.col(*POSITIVE_REACTIONS),
+            )
+            / pl.col("total_prefs")
         )
-        / pl.col("total_prefs")
     )
 
     return data
@@ -43,15 +46,27 @@ def get_votes_preferences(data: pl.DataFrame | None = None) -> pl.DataFrame:
                 data.select(
                     model_name=pl.col("model_a_name"),
                     **{
-                        **{reaction: f"conv_{reaction}_a" for reaction in POSITIVE_REACTIONS},
-                        **{reaction: f"conv_{reaction}_a" for reaction in NEGATIVE_REACTIONS},
+                        **{
+                            reaction: f"conv_{reaction}_a"
+                            for reaction in POSITIVE_REACTIONS
+                        },
+                        **{
+                            reaction: f"conv_{reaction}_a"
+                            for reaction in NEGATIVE_REACTIONS
+                        },
                     },
                 ),
                 data.select(
                     model_name=pl.col("model_b_name"),
                     **{
-                        **{reaction: f"conv_{reaction}_b" for reaction in POSITIVE_REACTIONS},
-                        **{reaction: f"conv_{reaction}_b" for reaction in NEGATIVE_REACTIONS},
+                        **{
+                            reaction: f"conv_{reaction}_b"
+                            for reaction in POSITIVE_REACTIONS
+                        },
+                        **{
+                            reaction: f"conv_{reaction}_b"
+                            for reaction in NEGATIVE_REACTIONS
+                        },
                     },
                 ),
             ]
@@ -73,8 +88,14 @@ def get_reactions_preferences(data: pl.DataFrame | None = None) -> pl.DataFrame:
         data.select(
             model_name=pl.col("refers_to_model"),
             **{
-                **{reaction: pl.col("liked") & pl.col(reaction) for reaction in POSITIVE_REACTIONS},
-                **{reaction: pl.col("disliked") & pl.col(reaction) for reaction in NEGATIVE_REACTIONS},
+                **{
+                    reaction: pl.col("liked") & pl.col(reaction)
+                    for reaction in POSITIVE_REACTIONS
+                },
+                **{
+                    reaction: pl.col("disliked") & pl.col(reaction)
+                    for reaction in NEGATIVE_REACTIONS
+                },
             },
         )
         .group_by("model_name")
@@ -86,10 +107,15 @@ def get_reactions_preferences(data: pl.DataFrame | None = None) -> pl.DataFrame:
     return compute_total_and_ratio(data)
 
 
-def get_preferences_data(votes_data: pl.DataFrame | None = None, reactions_data: pl.DataFrame | None = None):
+def get_preferences_data(
+    votes_data: pl.DataFrame | None = None, reactions_data: pl.DataFrame | None = None
+):
     votes_preferences = get_votes_preferences(votes_data)
     reactions_preferences = get_reactions_preferences(reactions_data)
 
     return compute_total_and_ratio(
-        pl.concat([votes_preferences, reactions_preferences]).group_by("model_name").sum().sort(by="model_name")
+        pl.concat([votes_preferences, reactions_preferences])
+        .group_by("model_name")
+        .sum()
+        .sort(by="model_name")
     )
