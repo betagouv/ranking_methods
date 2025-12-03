@@ -18,117 +18,97 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-    - name: Cache uv virtual environment
-      uses: actions/cache@v4
-      with:
-        path: .venv
-        key: ${{ runner.os }}-uv
-        restore-keys: |
-          ${{ runner.os }}-uv
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Cache uv virtual environment
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: ${{ runner.os }}-uv
+          restore-keys: |
+            ${{ runner.os }}-uv
 
-    - name: Setup virtual environment
-      run: |
-        python -m venv .venv
-        source .venv/bin/activate
-        pip install --upgrade pip
-    - name: Install dependencies
-      run: |
-        source .venv/bin/activate
-        pip install -e .
-        pip install polars datasets ipywidgets scikit-learn altair vl-convert-python networkx hdbscan nltk bertopic matplotlib umap-learn jupyter nbconvert
-    # - name: Get Dataset Timestamp
-    #   run: cd src && uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
-    # FIXME: check if release for DATASET_TIMESTAMP already computed
-    # - name: Download models data
-    #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
-    - name: Exec export script
-      run: |
-        source .venv/bin/activate && cd src && python rank_comparia/export.py
-      env:
-        HF_DATASETS_CACHE: cache
-        HF_HUB_CACHE: cache
-        HF_TOKEN: ${{ secrets.HF_TOKEN }}
-    - name: Upload outputs
-      uses: actions/upload-artifact@v4
-      with:
-        name: outputs
-        path: src/output/
+      - name: Setup virtual environment
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+      - name: Install dependencies
+        run: |
+          source .venv/bin/activate
+          pip install -e .
+          pip install polars datasets ipywidgets scikit-learn altair vl-convert-python networkx hdbscan nltk bertopic matplotlib umap-learn jupyter nbconvert
+      # - name: Get Dataset Timestamp
+      #   run: cd src && uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
+      # FIXME: check if release for DATASET_TIMESTAMP already computed
+      # - name: Download models data
+      #   run: curl https://comparia.beta.gouv.fr/available_models -o ./data/models_data.json
+      - name: Exec export script
+        run: |
+          source .venv/bin/activate && cd src && python rank_comparia/export.py
+        env:
+          HF_DATASETS_CACHE: cache
+          HF_HUB_CACHE: cache
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      - name: Upload outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: outputs
+          path: src/output/
 
-    - name: Get Release Timestamp
-      id: timestamp
-      run: |
-        TIMESTAMP=$(python -c "import json; print(json.load(open('src/output/ml_final_data.json'))['timestamp'])")
-        echo "DATASET_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
+      - name: Get Release Timestamp
+        id: timestamp
+        run: |
+          TIMESTAMP=$(python -c "import json; print(json.load(open('src/output/ml_final_data.json'))['timestamp'])")
+          echo "DATASET_TIMESTAMP=$TIMESTAMP" >> $GITHUB_ENV
 
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: release_${{ env.DATASET_TIMESTAMP }}
-        name: Release ${{ env.DATASET_TIMESTAMP }}
-        body: |
-          Release automatique générée par la pipeline CI/CD
-          
-          Basé sur les dataset "ministere-culture/comparia-*"
-          avec id: ${{ github.run_id }}
-          
-          Contient les données finales du classement depuis ml_final_data.json
-        draft: false
-        prerelease: false
-        generate_release_notes: true
-        files: |
-          src/output/**
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release_${{ env.DATASET_TIMESTAMP }}
+          name: Release ${{ env.DATASET_TIMESTAMP }}
+          body: |
+            Release automatique générée par la pipeline CI/CD
 
-    # - name: Publish ml_final_data.json as release
+            Basé sur les dataset "ministere-culture/comparia-*"
+            avec id: ${{ github.run_id }}
+
+            Contient les données finales du classement depuis ml_final_data.json
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: |
+            src/output/**
+
+    # - name: Push ml_final_data.json to Hugging Face dataset
     #   if: github.ref == 'refs/heads/main'
     #   run: |
     #       # Check if ml_final_data.json has changes
     #       if git diff --quiet HEAD -- utils/ranking_methods/output/ml_final_data.json; then
-    #         echo "No changes to ml_final_data.json, skipping release"
+    #         echo "No changes to ml_final_data.json, skipping Hugging Face push"
     #         exit 0
     #       fi
-          
-    #       # Create release tag
-    #       RELEASE_TAG="ml-data-v$(date +%Y%m%d-%H%M%S)"
-          
-    #       # Create release using GitHub CLI
-    #       gh release create "$RELEASE_TAG" \
-    #         --title "ML Final Data $RELEASE_TAG" \
-    #         --notes "Automated release of ml_final_data.json" \
-    #         utils/ranking_methods/output/ml_final_data.json
+
+    #       # Set up huggingface_hub using uv
+    #       uv pip install huggingface_hub
+
+    #       # Push to Hugging Face using huggingface_hub CLI
+    #       echo "Pushing ml_final_data.json to Hugging Face dataset"
+    #       huggingface-cli upload \
+    #         comparia-conversations \
+    #         ./src/output/ml_final_data.json \
+    #         "." \
+    #         --token ${{ secrets.HF_PUSH_DATASET_KEY }} \
+    #         --repo-type dataset \
+    #         --message "Update ml_final_data.json with latest data $(date +%Y-%m-%d\ %H:%M:%S)"
     #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #       HF_PUSH_DATASET_KEY: ${{ secrets.HF_PUSH_DATASET_KEY }}
 
-    - name: Push ml_final_data.json to Hugging Face dataset
-      if: github.ref == 'refs/heads/main'
-      run: |
-          # Check if ml_final_data.json has changes
-          if git diff --quiet HEAD -- utils/ranking_methods/output/ml_final_data.json; then
-            echo "No changes to ml_final_data.json, skipping Hugging Face push"
-            exit 0
-          fi
-          
-          # Set up huggingface_hub using uv
-          uv pip install huggingface_hub
-          
-          # Push to Hugging Face using huggingface_hub CLI
-          echo "Pushing ml_final_data.json to Hugging Face dataset"
-          huggingface-cli upload \
-            comparia-conversations \
-            ./src/output/ml_final_data.json \
-            "." \
-            --token ${{ secrets.HF_PUSH_DATASET_KEY }} \
-            --repo-type dataset \
-            --message "Update ml_final_data.json with latest data $(date +%Y-%m-%d\ %H:%M:%S)"
-      env:
-          HF_PUSH_DATASET_KEY: ${{ secrets.HF_PUSH_DATASET_KEY }}
-
-
+    # NB: Done in betagouv/comparia instead
     # - name: Commit ml_final_data.json to data branch
     #   if: github.ref == 'refs/heads/main'
     #   run: |
@@ -137,25 +117,24 @@ jobs:
     #       echo "No changes to ml_final_data.json, skipping commit to data branch"
     #       exit 0
     #     fi
-        
+
     #     # Configure git
     #     git config user.name "github-actions[bot]"
     #     git config user.email "github-actions[bot]@users.noreply.github.com"
-        
+
     #     # Fetch and checkout data branch
     #     git fetch origin data || echo "data branch doesn't exist, creating it"
     #     git switch --discard-changes --orphan data 2>/dev/null || git switch data
-        
+
     #     # Copy ml_final_data.json to root and commit
     #     cp utils/ranking_methods/output/ml_final_data.json ./ml_final_data.json
     #     git add ml_final_data.json
     #     git commit -m "Update ml_final_data.json with latest data"
-        
+
     #     # Push to data branch
     #     git push origin data --force
     #   env:
     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
     # - name: Create PR if changes on main
     #   if: github.ref == 'refs/heads/main'
@@ -165,23 +144,23 @@ jobs:
     #       echo "No changes to generated-models.json, skipping PR creation"
     #       exit 0
     #     fi
-        
+
     #     # Configure git
     #     git config user.name "github-actions[bot]"
     #     git config user.email "github-actions[bot]@users.noreply.github.com"
-        
+
     #     # Commit changes
     #     git add utils/models/generated-models.json
     #     git commit -m "Update generated models data"
-        
+
     #     # Create a new branch
     #     BRANCH_NAME="update-generated-models-$(date +%Y%m%d-%H%M%S)"
     #     git branch "$BRANCH_NAME"
     #     git switch "$BRANCH_NAME"
-        
+
     #     # Push the branch
     #     git push origin "$BRANCH_NAME"
-        
+
     #     # Create PR using GitHub CLI
     #     gh pr create \
     #       --title "Update generated models data" \
@@ -190,4 +169,3 @@ jobs:
     #       --base "main"
     #   env:
     #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
