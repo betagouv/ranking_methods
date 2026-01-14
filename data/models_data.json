@@ -1,284 +1,656 @@
 [
-    {
-      "name": "GPT-4o",
-      "model_name": "chatgpt-4o-2024-08-06",
-      "organization": "OpenAI",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Yi-1.5 9B Chat",
-      "model_name": "Yi-1.5-9B-Chat",
-      "organization": "01 AI",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Claude 3.5 Sonnet V2",
-      "model_name": "claude-3-5-sonnet-v2",
-      "organization": "Anthropic",
-      "license": "Proprietary"
-    },
-    {
-      "name": "GPT-4o mini",
-      "model_name": "gpt-4o-mini-2024-07-18",
-      "organization": "OpenAI",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Gemini 2.0 Flash",
-      "model_name": "gemini-2.0-flash-exp",
-      "organization": "Google",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Llama 3.1 405B",
-      "model_name": "llama-3.1-405b",
-      "organization": "Meta",
-      "license": "Llama 3.1 Community"
-    },
-    {
-      "name": "Mistral-Large-2411",
-      "model_name": "mistral-large-2411",
-      "organization": "Mistral",
-      "license": "Mistral Research"
-    },
-    {
-      "name": "Llama-3.1-70B",
-      "model_name": "llama-3.1-70b",
-      "organization": "Meta",
-      "license": "Llama 3.1 Community"
-    },
-    {
-      "name": "Llama 3.3 70B",
-      "model_name": "llama-3.3-70b",
-      "organization": "Meta",
-      "license": "Llama 3.3 Community"
-    },
-    {
-      "name": "Qwen2.5 32B",
-      "model_name": "qwen2.5-32b-instruct",
-      "organization": "Alibaba",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Qwen2.5-Coder-32B-Instruct",
-      "model_name": "qwen2.5-coder-32b-instruct",
-      "organization": "Alibaba",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Gemini 1.5 pro 001",
-      "model_name": "gemini-1.5-pro-001",
-      "organization": "Google",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Gemini 1.5 pro 002",
-      "model_name": "gemini-1.5-pro-002",
-      "organization": "Google",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Aya-Expanse-8B",
-      "model_name": "aya-expanse-8b",
-      "organization": "Cohere",
-      "license": "CC-BY-NC-4.0"
-    },
-    {
-      "name": "Command R (08-2024)",
-      "model_name": "c4ai-command-r-08-2024",
-      "organization": "Cohere",
-      "license": "CC-BY-NC-4.0"
-    },
-    {
-      "name": "Ministral 8B-Instruct",
-      "model_name": "ministral-8b-instruct-2410",
-      "organization": "Mistral",
-      "license": "MRL"
-    },
-    {
-      "name": "Llama 3.1 8B",
-      "model_name": "llama-3.1-8b",
-      "organization": "Meta",
-      "license": "Llama 3.1 Community"
-    },
-    {
-      "name": "DeepSeek-V3 Chat",
-      "model_name": "deepseek-v3-chat",
-      "organization": "DeepSeek",
-      "license": "DeepSeek"
-    },
-    {
-      "name": "DeepSeek-R1",
-      "model_name": "deepseek-r1",
-      "organization": "DeepSeek",
-      "license": "MIT"
-    },
-    {
-      "name": "DeepSeek-R1 distiil",
-      "model_name": "deepseek-r1-distill-llama-70b",
-      "organization": "DeepSeek",
-      "license": "MIT"
-    },
-    {
-      "name": "Gemini 2.0 Flash",
-      "model_name": "gemini-2.0-flash-001",
-      "organization": "Google",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Gemma 2 9B",
-      "model_name": "gemma-2-9b-it",
-      "organization": "Google",
-      "license": "Gemma license"
-    },
-    {
-      "name": "Gemma 3 12B",
-      "model_name": "gemma-3-12b",
-      "organization": "Google",
-      "license": "Gemma license"
-    },
-    {
-      "name": "Gemma 3 4B",
-      "model_name": "gemma-3-4b",
-      "organization": "Google",
-      "license": "Gemma license"
-    },
-    {
-      "name": "Gemma 2 27B q8",
-      "model_name": "gemma-2-27b-it-q8",
-      "organization": "Google",
-      "license": "Gemma license"
-    },
-    {
-      "name": "o3-mini",
-      "model_name": "o3-mini",
-      "organization": "OpenAI",
-      "license": "Proprietary"
-    },
-    {
-      "name": "Mistral-Small-24B-Instruct-2501",
-      "model_name": "mistral-small-24b-instruct-2501",
-      "organization": "Mistral",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Gemma-3 27B",
-      "model_name": "gemma-3-27b",
-      "organization": "Google",
-      "license": "Gemma"
-    },
-    {
-      "name": "Qwen2-7B",
-      "model_name": "qwen2-7b-instruct",
-      "organization": "Alibaba",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Qwen2.5-7B",
-      "model_name": "qwen2.5-7b-instruct",
-      "organization": "Alibaba",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Chocolatine-1.2-14b Instruct",
-      "model_name": "chocolatine-14b-instruct-dpo-v1.2-q4",
-      "organization": "jpacifico (individual)",
-      "license": "MIT"
-    },
-    {
-      "name": "Chocolatine-2-14b Instruct",
-      "model_name": "chocolatine-2-14b-instruct-v2.0.3-q8",
-      "organization": "jpacifico (individual)",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Command A",
-      "model_name": "command-a",
-      "organization": "Cohere",
-      "license": "CC-BY-NC-4.0"
-    },
-    {
-      "name": "Hermes 3",
-      "model_name": "hermes-3-llama-3.1-405b",
-      "organization": "Nous Research",
-      "license": "llama3"
-    },
-    {
-      "name": "Jamba Large",
-      "model_name": "jamba-1.5-large",
-      "organization": "AI21 Labs",
-      "license": "Jamba Open Model License"
-    },
-    {
-      "name": "Liquid Foundation Model",
-      "model_name": "lfm-40b",
-      "organization": "Liquid",
-      "license": "Unknown"
-    },
-    {
-      "name": "Nemotron 70B Instruct",
-      "model_name": "llama-3.1-nemotron-70b-instruct",
-      "organization": "Nvidia",
-      "license": "Llama 3.1 Community"
-    },
-    {
-      "name": "Mistral Nemo Instruct",
-      "model_name": "mistral-nemo-2407",
-      "organization": "Mistral AI",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Mistral Small-3.1 24B",
-      "model_name": "mistral-small-3.1-24b",
-      "organization": "Mistral AI",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Mixtral 8x22B Instruct",
-      "model_name": "mixtral-8x22b-instruct-v0.1",
-      "organization": "Mistral AI",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Mixtral 8x7B Instruct",
-      "model_name": "mixtral-8x7b-instruct-v0.1",
-      "organization": "Mistral AI",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Phi-3.5 Mini Instruct",
-      "model_name": "phi-3.5-mini-instruct",
-      "organization": "Microsoft",
-      "license": "MIT"
-    },
-    {
-      "name": "Phi 4",
-      "model_name": "phi-4",
-      "organization": "Microsoft",
-      "license": "MIT"
-    },
-    {
-      "name": "QwQ 32B",
-      "model_name": "qwq-32b",
-      "organization": "Alibaba",
-      "license": "Apache 2.0"
-    },
-    {
-      "name": "Aya 8b",
-      "model_name": "aya-23-8b",
-      "organization": "Cohere",
-      "license": "CC-BY-NC-4.0"
-    },
-    {
-      "name": "Llama 3 8B",
-      "model_name": "Meta-Llama-3-8B-Instruct",
-      "organization": "Meta",
-      "license": "llama3"
-    },
-    {
-      "name": "Phi 3 Mini",
-      "model_name": "phi-3-mini-4k",
-      "organization": "Microsoft",
-      "license": "MIT"
-    }
-  ]
+  {
+    "name": "Apertus 70B Instruct",
+    "model_name": "Apertus-70B-Instruct-2509",
+    "organization": "Swiss AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Apertus 8B Instruct",
+    "model_name": "Apertus-8B-Instruct-2509",
+    "organization": "Swiss AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Aya 23 8B",
+    "model_name": "aya-23-8b",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "Aya Expanse 32B",
+    "model_name": "aya-expanse-32b",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "Aya Expanse 8B",
+    "model_name": "aya-expanse-8b",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "Aya23-35B",
+    "model_name": "Aya23-35B",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "Command R",
+    "model_name": "c4ai-command-r-08-2024",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "Chocolatine 14B",
+    "model_name": "chocolatine-14b-instruct-dpo-v1.2",
+    "organization": "jpacifico",
+    "license": "MIT"
+  },
+  {
+    "name": "Chocolatine 14B",
+    "model_name": "chocolatine-14b-instruct-dpo-v1.2-q4",
+    "organization": "jpacifico",
+    "license": "MIT"
+  },
+  {
+    "name": "Chocolatine 2 14B",
+    "model_name": "chocolatine-2-14b-instruct-v2.0.3",
+    "organization": "jpacifico",
+    "license": "MIT"
+  },
+  {
+    "name": "Chocolatine 2 14B",
+    "model_name": "chocolatine-2-14b-instruct-v2.0.3-q8",
+    "organization": "jpacifico",
+    "license": "MIT"
+  },
+  {
+    "name": "Claude 3.5 Sonnet v2",
+    "model_name": "claude-3-5-sonnet-v2",
+    "organization": "Anthropic",
+    "license": "proprietary"
+  },
+  {
+    "name": "Claude 3.7 Sonnet",
+    "model_name": "claude-3-7-sonnet",
+    "organization": "Anthropic",
+    "license": "proprietary"
+  },
+  {
+    "name": "Claude 4.5 Sonnet",
+    "model_name": "claude-4-5-sonnet",
+    "organization": "Anthropic",
+    "license": "proprietary"
+  },
+  {
+    "name": "Claude 4 Sonnet",
+    "model_name": "claude-4-sonnet",
+    "organization": "Anthropic",
+    "license": "proprietary"
+  },
+  {
+    "name": "Command A",
+    "model_name": "command-a",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "Command R+",
+    "model_name": "command-r-plus",
+    "organization": "Cohere",
+    "license": "CC-BY-NC-4.0"
+  },
+  {
+    "name": "DeepSeek v3.1",
+    "model_name": "deepseek-chat-v3.1",
+    "organization": "DeepSeek",
+    "license": "MIT"
+  },
+  {
+    "name": "DeepSeek R1",
+    "model_name": "deepseek-r1",
+    "organization": "DeepSeek",
+    "license": "MIT"
+  },
+  {
+    "name": "DeepSeek R1 0528",
+    "model_name": "deepseek-r1-0528",
+    "organization": "DeepSeek",
+    "license": "MIT"
+  },
+  {
+    "name": "DeepSeek R1 Llama 70B",
+    "model_name": "deepseek-r1-distill-llama-70b",
+    "organization": "DeepSeek",
+    "license": "Llama 3.3"
+  },
+  {
+    "name": "DeepSeek V3",
+    "model_name": "deepseek-v3-0324",
+    "organization": "DeepSeek",
+    "license": "MIT"
+  },
+  {
+    "name": "DeepSeek v3",
+    "model_name": "deepseek-v3-chat",
+    "organization": "DeepSeek",
+    "license": "MIT"
+  },
+  {
+    "name": "DeepSeek V3.2",
+    "model_name": "DeepSeek-V3.2",
+    "organization": "DeepSeek",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "EuroLLM 22B Instruct",
+    "model_name": "EuroLLM-22B-Instruct-2512",
+    "organization": "EuroLLM",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Gemini 1.5 Pro",
+    "model_name": "gemini-1.5-pro",
+    "organization": "Google",
+    "license": "proprietary"
+  },
+  {
+    "name": "Gemini 2.0 Flash",
+    "model_name": "gemini-2.0-flash",
+    "organization": "Google",
+    "license": "proprietary"
+  },
+  {
+    "name": "Gemini 2.5 Flash",
+    "model_name": "gemini-2.5-flash",
+    "organization": "Google",
+    "license": "proprietary"
+  },
+  {
+    "name": "Gemini 3 Flash",
+    "model_name": "gemini-3-flash-preview",
+    "organization": "Google",
+    "license": "proprietary"
+  },
+  {
+    "name": "Gemini 3 Pro",
+    "model_name": "gemini-3-pro-preview",
+    "organization": "Google",
+    "license": "proprietary"
+  },
+  {
+    "name": "Gemma 2 27B",
+    "model_name": "gemma-2-27b-it",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 2 27B",
+    "model_name": "gemma-2-27b-it-q8",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 2 2B",
+    "model_name": "gemma-2-2b-it",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 2 9B",
+    "model_name": "gemma-2-9b-it",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 3 12B",
+    "model_name": "gemma-3-12b",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 3 27B",
+    "model_name": "gemma-3-27b",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 3 4B",
+    "model_name": "gemma-3-4b",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "Gemma 3n 4B",
+    "model_name": "gemma-3n-e4b-it",
+    "organization": "Google",
+    "license": "Gemma"
+  },
+  {
+    "name": "GLM 4.5",
+    "model_name": "glm-4.5",
+    "organization": "Zhipu",
+    "license": "MIT"
+  },
+  {
+    "name": "GLM 4.6",
+    "model_name": "glm-4.6",
+    "organization": "Zhipu",
+    "license": "MIT"
+  },
+  {
+    "name": "GLM 4.7",
+    "model_name": "glm-4.7",
+    "organization": "Zhipu",
+    "license": "MIT"
+  },
+  {
+    "name": "GPT-3.5",
+    "model_name": "gpt-3.5-turbo-0301",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT-4.1 Mini",
+    "model_name": "gpt-4.1-mini",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT 4.1 Nano",
+    "model_name": "gpt-4.1-nano",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT-4o",
+    "model_name": "gpt-4o-2024-08-06",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT-4o mini",
+    "model_name": "gpt-4o-mini-2024-07-18",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT 5",
+    "model_name": "gpt-5",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT 5 Mini",
+    "model_name": "gpt-5-mini",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT 5 Nano",
+    "model_name": "gpt-5-nano",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT 5.1",
+    "model_name": "gpt-5.1",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT 5.2",
+    "model_name": "gpt-5.2",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "GPT OSS-120B",
+    "model_name": "gpt-oss-120b",
+    "organization": "OpenAI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "GPT OSS-20B",
+    "model_name": "gpt-oss-20b",
+    "organization": "OpenAI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Grok 3 Mini",
+    "model_name": "grok-3-mini-beta",
+    "organization": "xAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "Grok 4 Fast",
+    "model_name": "grok-4-fast",
+    "organization": "xAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "Grok 4.1 Fast",
+    "model_name": "grok-4.1-fast",
+    "organization": "xAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "Hermes 3 405B",
+    "model_name": "hermes-3-llama-3.1-405b",
+    "organization": "Nous",
+    "license": "Llama 3.1"
+  },
+  {
+    "name": "Hermes 4 70B",
+    "model_name": "hermes-4-70b",
+    "organization": "Nous",
+    "license": "Llama 3.1"
+  },
+  {
+    "name": "Jamba 1.5 Large",
+    "model_name": "jamba-1.5-large",
+    "organization": "AI21",
+    "license": "Jamba Open Model"
+  },
+  {
+    "name": "Kimi K2",
+    "model_name": "kimi-k2",
+    "organization": "Moonshot AI",
+    "license": "MIT"
+  },
+  {
+    "name": "Kimi K2 Thinking",
+    "model_name": "kimi-k2-thinking",
+    "organization": "Moonshot AI",
+    "license": "MIT"
+  },
+  {
+    "name": "LFM 40B",
+    "model_name": "lfm-40b",
+    "organization": "Liquid",
+    "license": "proprietary"
+  },
+  {
+    "name": "LFM 2 8B A1B",
+    "model_name": "lfm2-8b-a1b",
+    "organization": "Liquid",
+    "license": "LFM 1.0"
+  },
+  {
+    "name": "Llama 3.1 405B",
+    "model_name": "llama-3.1-405b",
+    "organization": "Meta",
+    "license": "Llama 3.1"
+  },
+  {
+    "name": "Llama 3.1 70B",
+    "model_name": "llama-3.1-70b",
+    "organization": "Meta",
+    "license": "Llama 3.1"
+  },
+  {
+    "name": "Llama 3.1 8B",
+    "model_name": "llama-3.1-8b",
+    "organization": "Meta",
+    "license": "Llama 3.1"
+  },
+  {
+    "name": "Nemotron Llama 3.1 70B",
+    "model_name": "llama-3.1-nemotron-70b-instruct",
+    "organization": "Nvidia",
+    "license": "Llama 3.1"
+  },
+  {
+    "name": "Llama 3.3 70B",
+    "model_name": "llama-3.3-70b",
+    "organization": "Meta",
+    "license": "Llama 3.3"
+  },
+  {
+    "name": "Llama 4 Scout",
+    "model_name": "llama-4-scout",
+    "organization": "Meta",
+    "license": "Llama 4"
+  },
+  {
+    "name": "Llama 4 Maverick",
+    "model_name": "llama-maverick",
+    "organization": "Meta",
+    "license": "Llama 4"
+  },
+  {
+    "name": "Magistral Medium",
+    "model_name": "magistral-medium",
+    "organization": "Mistral AI",
+    "license": "proprietary"
+  },
+  {
+    "name": "Magistral Small",
+    "model_name": "magistral-small-2506",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Llama 3 70B",
+    "model_name": "Meta-Llama-3-70B-Instruct",
+    "organization": "Meta",
+    "license": "Llama 3 Community"
+  },
+  {
+    "name": "Llama 3 8B",
+    "model_name": "Meta-Llama-3-8B-Instruct",
+    "organization": "Meta",
+    "license": "Llama 3 Community"
+  },
+  {
+    "name": "MiniMax M2",
+    "model_name": "minimax-m2",
+    "organization": "MiniMax",
+    "license": "MIT"
+  },
+  {
+    "name": "Ministral",
+    "model_name": "ministral-8b-instruct-2410",
+    "organization": "Mistral AI",
+    "license": "Mistral AI Research License"
+  },
+  {
+    "name": "Mistral Large 2",
+    "model_name": "mistral-large-2411",
+    "organization": "Mistral AI",
+    "license": "Mistral AI Research License"
+  },
+  {
+    "name": "Mistral 3 Large",
+    "model_name": "mistral-large-2512",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mistral Medium 3.1",
+    "model_name": "mistral-medium-2508",
+    "organization": "Mistral AI",
+    "license": "proprietary"
+  },
+  {
+    "name": "Mistral Nemo",
+    "model_name": "mistral-nemo-2407",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mistral Saba",
+    "model_name": "mistral-saba",
+    "organization": "Mistral AI",
+    "license": "proprietary"
+  },
+  {
+    "name": "Mistral Small 3",
+    "model_name": "mistral-small-24b-instruct-2501",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mistral Small 3.2",
+    "model_name": "mistral-small-2506",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mistral Small 3.1 24B",
+    "model_name": "mistral-small-3.1-24b",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mistral Small 3.2 24B",
+    "model_name": "mistral-small-3.2-24b",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mixtral 8x22B",
+    "model_name": "mixtral-8x22b-instruct-v0.1",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Mixtral-8x7B",
+    "model_name": "mixtral-8x7b-instruct-v0.1",
+    "organization": "Mistral AI",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "o3-mini",
+    "model_name": "o3-mini",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "o4 mini",
+    "model_name": "o4-mini",
+    "organization": "OpenAI",
+    "license": "proprietary"
+  },
+  {
+    "name": "OLMo-2 32B",
+    "model_name": "olmo-2-0325-32b",
+    "organization": "Ai2",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Olmo 3 32B Think",
+    "model_name": "olmo-3-32b-think",
+    "organization": "Ai2",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Phi-3-Mini",
+    "model_name": "phi-3-mini-4k",
+    "organization": "Microsoft",
+    "license": "MIT"
+  },
+  {
+    "name": "Phi-3-small-8k-Instruct",
+    "model_name": "Phi-3-small-8k-Instruct",
+    "organization": "Microsoft",
+    "license": "MIT"
+  },
+  {
+    "name": "Phi-3.5-mini",
+    "model_name": "phi-3.5-mini-instruct",
+    "organization": "Microsoft",
+    "license": "MIT"
+  },
+  {
+    "name": "Phi-4",
+    "model_name": "phi-4",
+    "organization": "Microsoft",
+    "license": "MIT"
+  },
+  {
+    "name": "Qwen 3 8B",
+    "model_name": "qwen-3-8b",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen1.5-32B",
+    "model_name": "Qwen1.5-32B-Chat",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen2-57B-A14B-Instruct",
+    "model_name": "Qwen2-57B-A14B-Instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen2-72b-instruct",
+    "model_name": "Qwen2-72b-instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen2-7B",
+    "model_name": "qwen2-7b-instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen2.5-32B",
+    "model_name": "qwen2.5-32b-instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen2.5-7B",
+    "model_name": "qwen2.5-7b-instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen 2.5 Coder 32B",
+    "model_name": "qwen2.5-coder-32b-instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen 3 30B A3B",
+    "model_name": "qwen3-30b-a3b",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen 3 32B",
+    "model_name": "qwen3-32b",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen3 Coder 480B A35B",
+    "model_name": "Qwen3-Coder-480B-A35B-Instruct",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Qwen 3 Max",
+    "model_name": "qwen3-max-2025-09-23",
+    "organization": "Alibaba",
+    "license": "proprietary"
+  },
+  {
+    "name": "qwq 32B",
+    "model_name": "qwq-32b",
+    "organization": "Alibaba",
+    "license": "Apache 2.0"
+  },
+  {
+    "name": "Yi-1.5 9B",
+    "model_name": "Yi-1.5-9B-Chat",
+    "organization": "01-ai",
+    "license": "Apache 2.0"
+  }
+]
