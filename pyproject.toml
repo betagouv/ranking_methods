@@ -16,24 +16,15 @@ packages = [
 python = ">=3.12"
 polars = "^1.26.0"
 datasets = "^3.6.0"
-ipywidgets = "^8.1.7"
 scikit-learn = "^1.6.1"
 altair = "^5.5.0"
 vl-convert-python = "^1.8.0"
 networkx = "^3.5"
-hdbscan = "^0.8.40"
-nltk = "^3.9.1"
-bertopic = "^0.17.3"
-matplotlib = "^3.10.5"
-umap-learn = "^0.5.9.post2"
-jupyter = "^1.0"
-nbconvert = "^7.0"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^7.1"
 black = { extras = ["jupyter"], version = "^24.10" }
 pylint = "^3.3"
-# pylint-pydantic = "^0"  # Uncomment if you use pydantic
 pytest = "^8.3"
 pytest-cov = "^5.0"
 pre-commit = "^3.8"
@@ -41,6 +32,17 @@ licensecheck = "^2025.1.0"
 reuse = "^3.0"
 pyright = {extras = ["nodejs"], version = "^1.1"}
 isort = "^5.13.2"
+
+[tool.poetry.group.notebooks]
+optional = true
+
+[tool.poetry.group.notebooks.dependencies]
+bertopic = "^0.17.3"
+hdbscan = "^0.8.40"
+umap-learn = "^0.5.9"
+matplotlib = "^3.10.5"
+nltk = "^3.9.1"
+ipywidgets = "^8.1.7"
 ipykernel = "^6.29.5"
 
 [build-system]
