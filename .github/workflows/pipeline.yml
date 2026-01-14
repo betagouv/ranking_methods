@@ -4,7 +4,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 6 * * 3"
+    - cron: "0 6 * * 3" # Run weekly on Wednesday at 6 AM UTC (1 hour before PR creation pipeline)
 
 permissions:
   contents: write
@@ -39,7 +39,7 @@ jobs:
         run: |
           source .venv/bin/activate
           pip install -e .
-          pip install polars datasets ipywidgets scikit-learn altair vl-convert-python networkx hdbscan nltk bertopic matplotlib umap-learn jupyter nbconvert
+          pip install polars datasets ipywidgets scikit-learn altair vl-convert-python networkx hdbscan nltk matplotlib umap-learn jupyter nbconvert
       # - name: Get Dataset Timestamp
       #   run: cd src && uv run python rank_comparia/latest-timestamp.py >> $GITHUB_ENV
       # FIXME: check if release for DATASET_TIMESTAMP already computed
